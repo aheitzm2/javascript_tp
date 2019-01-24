@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Exercice 1</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="mdb.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <!-- <script src="../mdb/js/jquery.min.js"></script>
+  <script src="../mdb/js/bootstrap.min.js"></script> -->
+  <script src="mdb/js/mdb.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#" id="navImc">IMC</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false"><span id="actions">Actions</span></a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#" onclick="imc()" id="calculerMenu">Calculer</a>
+          <a class="dropdown-item" href="#" id="effacerMenu">Effacer</a>
+          <a class="dropdown-item" href="#" onclick="window.print();" id="print">Imprimer</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Mode</a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#" id="pageIMC">Calculer IMC</a>
+          <a class="dropdown-item" href="#" id="pageFact">Calculer factorielle</a>
+          <a class="dropdown-item" href="#" id="pageFib">Calculer fibonacci</a>
+          <a class="dropdown-item" href="#" id="pageConvert">Convertir</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false"><span id="aide">Aide</span></a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#" id="descr" onclick="changePageDescr();">Description du site</a>
+          <a class="dropdown-item" href="#" id="nous" onclick="changePageContact();">Contacter nous</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+	<a href="#" onclick="changeFr();"><strong>Fr</strong></a>/<a href="#" onclick="changeEn();"><strong>En</strong></a>	
+	<div class="container text-center" id="imc">
+		<h1 id="titreIMC">Calcul de l'indice de masse corporelle</h1><br>
+		<form>
+			<label id="tradTaille">Taille (mètre)</label> 
+			<input type="text" name="taille" id="t"> <div style="display: inline-block;" id="probTaille"></div><br><br>
+
+			<label id="tradMasse">Masse (en kg)</label> 
+			<input type="text" name="masse" id="m"> <div style="display: inline-block;" id="probMasse"></div><br>
+ 
+			<div class="custom-control custom-radio">
+				<input type="radio" class="custom-control-input" id="homme" name="sexe" value="homme">
+				<label class="custom-control-label" for="homme" id="genderM">Homme</label>
+			</div>
+			<div class="custom-control custom-radio">
+				<input type="radio" class="custom-control-input" id="femme" name="sexe" value="femme">
+				<label class="custom-control-label" for="femme" id="genderF">Femme</label>
+			</div>
+
+			<div id="probSexe"></div><br>
+			<input type="button" class="btn btn-success wave-effect" name="bouton" value="Calculer" id="submit">
+			<input type="button" class="btn btn-danger" name="boutonEfface" value="Effacer" id="effacer"><span id="msg" style="display: none"> Appuyer sur le bouton pour calculer l'IMC</span>
+			<div id="result"></div>
+			<div id="comm"></div>
+		</form>
+	</div>
+	<div class="container text-center" id="fact">
+		<h1 id="titreFact">Calcul factorielle</h1><br>
+		<label>Nombre entier N</label> 
+			<input type="text" name="fact" id="factoriel"> <div style="display: inline-block;" id="probFact"></div><br>
+			<input type="button" class="btn btn-success wave-effect" name="bouton" value="Calculer" id="submitFact">
+			<div id="resultFact"></div>
+	</div>
+	<div class="container text-center" id="fib">
+		<h1 id="titreFib">Calcul de la suite de fibonacci</h1><br>
+		<form name="fibonacci">
+			<input type="button" class="btn btn-success wave-effect" onClick="fib();" id="suite" value="SUITE DE FIBONACCI" /><br /><br /><b id="textFib">Cliquez sur le bouton ci-dessus pour lister la suite de Fibonacci du premier élément jusqu'au N <sup>ième</sup> élément. (Pour N>78, la précision des derniers chiffres est perdue car les entiers sont trop grands)</b><br />
+
+			<textarea name="resultats" cols="100" rows="20"></textarea><br /><font color="red"><b id="zoneResult">ZONE DE RESULTATS</b></font><br /><br /><input id="fibClear" type="button" onClick="cleanup();" class="btn btn-danger wave-effect" value="EFFACER" />
+		</form>
+	</div>
+	<div class="container text-center" id="convert">
+		<h1 id="titreConv">Conversion</h1><br>
+		<label id="textLength">cm -> inches</label>
+  		<input id="inputcm" type="number" placeholder="cm" oninput="LengthConverter(this.value)" onchange="LengthConverter(this.value)"> <span id="outputInches"></span><br>
+
+		<label id="textWeigth">Kg -> Pound</label>
+		<input id="inputKilograms" type="number" placeholder="Kilogramme" oninput="weightConverter(this.value)" onchange="weightConverter(this.value)"> <span id="outputPounds"></span><br>
+
+		<label id="textLengthKm">Km -> Miles</label>
+		<input id="inputKilometers" type="number" placeholder="Kilomètres" oninput="KmConverter(this.value)" onchange="KmConverter(this.value)"> <span id="outputMiles"></span><br>
+
+		<label id="textTemp">C° -> F°</label>
+		<input id="inputCelsius" type="number" placeholder="C°" oninput="temperatureConverter(this.value)" onchange="temperatureConverter(this.value)"> <span id="outputFahrenheit"></span><br>
+
+		<input type="button" class="btn btn-success wave-effect" name="modeInv" value="Inverser" onclick="modeInv();temperatureConverter(this.value);KmConverter(this.value);weightConverter(this.value);LengthConverter(this.value);" oninput="temperatureConverter(this.value);KmConverter(this.value);weightConverter(this.value);LengthConverter(this.value);">
+	</div>
+	<div class="container text-center" id="pageContact">
+		<h1 id="titreContact">Contacter nous</h1><br>
+		<p>E-mail : test@gmail.com</p>
+		<p>Tel : 0606060606</p>
+	</div>
+	<div class="container text-center" id="pageDescr">
+		<h1 id="titreDesc">Description</h1><br>
+		<p>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a purus ex. Vestibulum elementum porttitor porta. Etiam luctus lacus scelerisque, bibendum erat at, consectetur quam. Donec ac cursus massa, volutpat interdum lorem. Suspendisse iaculis vulputate purus quis pulvinar. Suspendisse tincidunt nec magna nec dignissim. Suspendisse ac velit sapien. Vivamus pellentesque felis metus, quis feugiat neque rhoncus vel. Donec mattis velit scelerisque odio semper interdum. Etiam mauris eros, ullamcorper facilisis magna non, blandit auctor odio. Cras facilisis, velit sit amet commodo accumsan, lorem ex consectetur est, ac pretium ligula diam aliquam dui. Mauris pharetra sem ac tellus elementum tempor. Vestibulum sit amet tristique lectus, et mollis est.
+
+Vestibulum id sapien vel nulla fringilla pretium. Nam iaculis, turpis in convallis sodales, ante orci rhoncus velit, sed ornare ligula purus id massa. Nam pharetra ex ante. Fusce nec magna pulvinar, pellentesque velit vel, fringilla ex. Nunc quis rhoncus nunc. Morbi eget suscipit mauris, ut maximus odio. Nullam at urna eget sem sodales condimentum ut ut ligula. Donec at ipsum pretium, lobortis mi ac, consectetur sem. Praesent tincidunt, libero sit amet porta efficitur, lorem libero placerat lacus, vitae elementum justo justo eget eros. Curabitur convallis erat porta, congue ante eget, mattis erat. Proin imperdiet pellentesque neque non tristique. Nam lorem lacus, tempor bibendum elementum a, auctor vel metus. Donec laoreet nulla sed sem laoreet scelerisque. Pellentesque aliquam arcu sed tortor dictum, ut convallis erat pulvinar. Aenean blandit, diam nec sodales accumsan, leo arcu porttitor quam, sit amet congue sem dui nec sem.
+
+Proin urna justo, fringilla sit amet efficitur sed, tristique nec diam. Vivamus ultrices est ligula, sit amet semper leo pulvinar ut. Proin laoreet, libero sit amet volutpat fermentum, odio libero finibus elit, sed vulputate ligula nibh at elit. Praesent pharetra laoreet ipsum, consectetur maximus erat consequat ut. Nulla eu commodo justo, quis tempus diam. Fusce posuere nisl at imperdiet mattis. Proin id sapien eget mauris consectetur tempus vitae at urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed magna enim, viverra non elementum ac, vehicula a dolor. Nunc vel faucibus arcu. Duis non sapien in lorem luctus malesuada. Suspendisse cursus varius luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Cras vehicula sapien turpis, nec ultrices magna lobortis ac. Curabitur non iaculis arcu. Nunc nibh massa, interdum et nulla id, elementum finibus libero. Ut vitae porttitor libero, at porta nisi. Etiam quis ligula eu elit cursus pretium viverra vel lacus. Maecenas felis neque, accumsan sit amet augue ac, rutrum finibus turpis.
+
+Duis rhoncus porta nulla, at ultrices nunc pretium id. Aliquam rutrum tortor ac varius sodales. Integer dapibus dolor sed turpis accumsan, laoreet posuere nisi semper. Aenean semper pellentesque metus vitae lacinia. Vestibulum rutrum et ante et molestie. Aliquam ut tellus ante. Curabitur at tortor in tortor cursus placerat. Sed placerat, quam ac convallis facilisis, nisl turpis molestie mi, dignissim faucibus nibh justo et magna. Sed eget volutpat est, id congue sapien. Praesent laoreet leo ut scelerisque interdum. Praesent non urna vel metus fermentum malesuada nec quis velit. Nulla sit amet placerat velit, sed laoreet nibh. Donec sed risus at enim bibendum dignissim. Fusce non turpis euismod, pharetra libero non, mattis mauris. </p>
+	</div>
+		<script type="text/javascript">
+			var mode=0;
+			var lang=0;
+
+			document.getElementById("imc").style.display = "block";
+			document.getElementById("fact").style.display = "none";
+			document.getElementById("fib").style.display = "none";
+			document.getElementById("convert").style.display = "none";
+			document.getElementById("pageDescr").style.display = "none";
+				document.getElementById("pageContact").style.display = "none";
+
+			document.getElementById("effacer").addEventListener("click",clear);
+			document.getElementById("effacerMenu").addEventListener("click",clear);
+			document.getElementById("submit").addEventListener("click",imc);
+			document.getElementById("m").addEventListener("change",verifMasse);
+			document.getElementById("t").addEventListener("change",verifTaille);
+
+			document.getElementById("submitFact").addEventListener("click",factorielle);
+
+			document.getElementById("pageIMC").addEventListener("click",changePageIMC);
+			document.getElementById("pageFact").addEventListener("click",changePageFact);
+			document.getElementById("pageConvert").addEventListener("click",changePageConvert);
+			document.getElementById("pageFib").addEventListener("click",changePageFib); 
+
+			function changeFr(){
+				if (lang==0) {}
+				else{
+					lang=0;
+					document.getElementById("navImc").innerHTML="IMC";
+					document.getElementById("pageIMC").innerHTML="Calculer IMC";
+					document.getElementById("pageFact").innerHTML="Calculer factorielle";
+					document.getElementById("pageConvert").innerHTML="Convertir";
+					document.getElementById("pageFib").innerHTML="Calculer fibonacci";
+					document.getElementById("titreIMC").innerHTML="Calcul de l'indice de masse corporelle";
+					document.getElementById("tradMasse").innerHTML="Masse (en kg)";
+					document.getElementById("tradTaille").innerHTML="Taille (en mètre)";
+					document.getElementById("msg").innerHTML="Appuyer sur le bouton pour calculer l'IMC";
+					document.getElementById("effacer").value="Effacer";
+					document.getElementById("effacerMenu").value="Effacer";
+					document.getElementById("submit").value="Calculer";
+					document.getElementById("submitFact").value="Calculer";
+					document.getElementById("zoneResult").innerHTML="ZONE DE RESULTATS";
+					document.getElementById("genderM").innerHTML="Homme";
+					document.getElementById("genderF").innerHTML="Femme";
+					document.getElementById("calculerMenu").innerHTML="Calculer";
+					document.getElementById("descr").innerHTML="Description du site";
+					document.getElementById("aide").innerHTML="Aide";
+					document.getElementById("print").innerHTML="Imprimer";
+					document.getElementById("actions").innerHTML="Actions";
+					document.getElementById("nous").innerHTML="Contacter nous";
+					document.getElementById("titreFib").innerHTML="Calcul de la suite de fibonacci";
+					document.getElementById("titreFact").innerHTML="Calcul factorielle";
+					document.getElementById("suite").value="SUITE DE FIBONACCI";
+					document.getElementById("fibClear").value="EFFACER";
+					document.getElementById("textFib").innerHTML="Cliquez sur le bouton ci-dessus pour lister la suite de Fibonacci du premier élément jusqu'au Nième élément. (Pour N>78, la précision des derniers chiffres est perdue car les entiers sont trop grands)";
+					document.getElementById("titreDesc").innerHTML="Description du site";
+					document.getElementById("titreContact").innerHTML="Contacter nous";
+				}
+
+			}
+
+			function changeEn(){
+				if (lang==1) {}
+				else{
+					lang=1;
+					document.getElementById("navImc").innerHTML="BMI";
+					document.getElementById("pageIMC").innerHTML="Calculate BMI";
+					document.getElementById("pageFact").innerHTML="Calculate factorial";
+					document.getElementById("pageConvert").innerHTML="Convert";
+					document.getElementById("pageFib").innerHTML="Calculate fibonacci";
+					document.getElementById("titreIMC").innerHTML="Calculating the body mass index";
+					document.getElementById("tradMasse").innerHTML="Weigth (in kg)";
+					document.getElementById("tradTaille").innerHTML="Heigth (in metre)";
+					document.getElementById("msg").innerHTML="Press the button to calculate the BMI";
+					document.getElementById("effacer").value="Clear";
+					document.getElementById("effacerMenu").innerHTML="Clear";
+					document.getElementById("submit").value="Calculate";
+					document.getElementById("submitFact").value="Calculate";
+					document.getElementById("zoneResult").innerHTML="RESULT AREA";
+					document.getElementById("genderM").innerHTML="Male";
+					document.getElementById("genderF").innerHTML="Female";
+					document.getElementById("calculerMenu").innerHTML="Calculate";
+					document.getElementById("descr").innerHTML="Web site description";
+					document.getElementById("aide").innerHTML="Help";
+					document.getElementById("print").innerHTML="Print";
+					document.getElementById("actions").innerHTML="Actions";
+					document.getElementById("nous").innerHTML="Contact us";
+					document.getElementById("titreFib").innerHTML="Calculation of the fibonacci sequence";
+					document.getElementById("titreFact").innerHTML="Factorial calculation";
+					document.getElementById("suite").value="FIBONACCI SEQUENCE";
+					document.getElementById("fibClear").value="CLEAR";
+					document.getElementById("textFib").innerHTML="Click the button above to list the Fibonacci sequence from the first element to the Nth element. (For N> 78, the precision of the last digits is lost because the integers are too big)";
+					document.getElementById("titreDesc").innerHTML="Web site description";
+					document.getElementById("titreContact").innerHTML="Contact us";
+				}
+			}
+
+			function changePageContact(){
+				document.getElementById("imc").style.display = "none";
+				document.getElementById("fact").style.display = "none";
+				document.getElementById("fib").style.display = "none";
+				document.getElementById("convert").style.display = "none";
+				document.getElementById("pageDescr").style.display = "none";
+				document.getElementById("pageContact").style.display = "block";
+			}
+
+			function changePageDescr(){
+				document.getElementById("imc").style.display = "none";
+				document.getElementById("fact").style.display = "none";
+				document.getElementById("fib").style.display = "none";
+				document.getElementById("convert").style.display = "none";
+				document.getElementById("pageDescr").style.display = "block";
+				document.getElementById("pageContact").style.display = "none";
+			}
+
+			function changePageIMC(){
+				document.getElementById("imc").style.display = "block";
+				document.getElementById("fact").style.display = "none";
+				document.getElementById("fib").style.display = "none";
+				document.getElementById("convert").style.display = "none";
+				document.getElementById("pageDescr").style.display = "none";
+				document.getElementById("pageContact").style.display = "none";
+			}
+
+			function changePageFact(){
+				document.getElementById("imc").style.display = "none";
+				document.getElementById("fact").style.display = "block";
+				document.getElementById("fib").style.display = "none";
+				document.getElementById("convert").style.display = "none";
+				document.getElementById("pageDescr").style.display = "none";
+				document.getElementById("pageContact").style.display = "none";
+			}
+
+			function changePageFib(){
+				document.getElementById("imc").style.display = "none";
+				document.getElementById("fact").style.display = "none";
+				document.getElementById("fib").style.display = "block";
+				document.getElementById("convert").style.display = "none";
+				document.getElementById("pageDescr").style.display = "none";
+				document.getElementById("pageContact").style.display = "none";
+			}
+
+			function changePageConvert(){
+				document.getElementById("imc").style.display = "none";
+				document.getElementById("fact").style.display = "none";
+				document.getElementById("fib").style.display = "none";
+				document.getElementById("convert").style.display = "block";
+				document.getElementById("pageDescr").style.display = "none";
+				document.getElementById("pageContact").style.display = "none";
+			}
+			function factorielle(){
+				var n=document.getElementById("factoriel").value;
+				var result=n;
+				if (isNaN(n)) {
+					document.getElementById("probFact").innerHTML="<i style='color: red' class='far fa-times-circle'></i> <strong style='color: red'>Vous devez saisir un nombre.</strong>";
+				}
+				else{
+					clear();
+					for (var i = n-1; i >0; i--) {
+						result=result*i;
+						console.log(result);
+					}
+					document.getElementById("resultFact").innerHTML="<strong>Factoriel : </strong>"+result;
+				}
+			}
+
+			function modeInv(){
+				console.log(mode);
+				if (mode==0) mode=1;
+				else mode=0;
+			}
+
+			function LengthConverter(valNum) {
+				if (mode==0) {
+					document.getElementById("textLength").innerHTML="cm -> inches";
+					document.getElementById("inputcm").placeholder="cm";
+					if (!isNaN(valNum)) {
+						document.getElementById("outputInches").innerHTML=valNum*0.39370;
+					}
+				}
+				else {
+					document.getElementById("textLength").innerHTML="inches -> cm";
+					document.getElementById("inputcm").placeholder="inches";
+					if (!isNaN(valNum)) {
+						document.getElementById("outputInches").innerHTML=valNum/0.39370;
+					}
+				}
+			}
+
+			function weightConverter(valNum) {
+				if (mode==0) {
+					document.getElementById("textWeigth").innerHTML="Kg -> Pound";
+					document.getElementById("inputKilograms").placeholder="Kg";
+					if (!isNaN(valNum)) {
+						document.getElementById("outputPounds").innerHTML=valNum*2.2046;
+					}
+				}
+				else {
+					document.getElementById("textWeigth").innerHTML="Pound -> Kg";
+					document.getElementById("inputKilograms").placeholder="Pound";
+					if (!isNaN(valNum)) {
+						document.getElementById("outputPounds").innerHTML=valNum/2.2046;
+					}
+				}
+			}
+
+			function KmConverter(valNum) {
+				if (mode==0) {
+					document.getElementById("textLengthKm").innerHTML="Km -> Miles";
+					document.getElementById("inputKilometers").placeholder="Km";
+					if (!isNaN(valNum)) {
+						document.getElementById("outputMiles").innerHTML=valNum*0.62137;
+					}
+				}
+				else {
+					document.getElementById("textLengthKm").innerHTML="Miles -> Km";
+					document.getElementById("inputKilometers").placeholder="Miles";
+					if (!isNaN(valNum)) {
+						document.getElementById("outputMiles").innerHTML=valNum/0.62137;
+					}
+				}
+			}
+
+			function temperatureConverter(valNum) {
+				if (mode==0) {
+					document.getElementById("textTemp").innerHTML="C° -> F°";
+					document.getElementById("inputCelsius").placeholder="C°";
+					if (!isNaN(valNum)) {
+						valNum = parseFloat(valNum);
+						document.getElementById("outputFahrenheit").innerHTML=(valNum*1.8)+32;
+					}
+				}
+				else {
+					document.getElementById("textTemp").innerHTML="F° -> C°";
+					document.getElementById("inputCelsius").placeholder="F°";
+					if (!isNaN(valNum)) {
+						valNum = parseFloat(valNum);
+						document.getElementById("outputFahrenheit").innerHTML=(valNum-32)/1.8;
+					}
+				}
+			}
+
+			tab=new Array(0,1);
+
+			function fib(){
+				Nieme=prompt("entrez le N ième rang de\nla suite de Fibonacci", "50");
+				for (i=2; i<=Nieme; i++){
+					tab[i]=tab[i-1]+tab[i-2];
+				}
+
+				for (n=0; n<=Nieme; n++){
+					document.fibonacci.resultats.value+=tab[n]+", ";
+				}
+				document.fibonacci.resultats.value+="FIN";
+				window.status="calculs et affichage terminés";
+				}
+				function cleanup(){
+				document.fibonacci.resultats.value="";
+			}
+
+			function clear(){
+				document.getElementById("comm").innerHTML="";
+				document.getElementById("result").innerHTML="";
+				document.getElementById("m").value="";
+				document.getElementById("t").value="";
+				document.getElementById("probMasse").innerHTML="";
+				document.getElementById("probTaille").innerHTML="";
+				document.getElementById("probSexe").innerHTML="";
+				document.getElementById("probFact").innerHTML="";
+				document.getElementById("outputInches").innerHTML="";
+				document.getElementById("outputFahrenheit").innerHTML="";
+				document.getElementById("outputMiles").innerHTML="";
+				document.getElementById("outputPounds").innerHTML="";
+			}
+
+			var e = document.getElementById('submit');
+			e.onmouseover = function() {
+			  document.getElementById('msg').style.display = 'block';
+			}
+			e.onmouseout = function() {
+			  document.getElementById('msg').style.display = 'none';
+			}
+
+			function verifTaille(){
+				var taille=document.getElementById("t").value;
+
+				if (taille<=0) {
+					document.getElementById("probTaille").innerHTML="<i style='color: red' class='far fa-times-circle'></i> <strong style='color: red'>La taille ne peut pas être négative ou égale à 0.</strong>";
+					return 0;
+				}
+				
+				else if (isNaN(taille)) {
+					document.getElementById("probTaille").innerHTML="<i style='color: red' class='far fa-times-circle'></i> <strong style='color: red'>La taille saisie doit être un chiffre.</strong>";
+					return 0;
+				}
+				document.getElementById("probTaille").innerHTML="<i style='color: green' class='far fa-check-circle'></i>";
+				return 1;
+			}
+
+			function verifMasse(){
+				var masse=document.getElementById("m").value;
+				if (masse<=0) {
+					document.getElementById("probMasse").innerHTML="<i style='color: red' class='far fa-times-circle'></i> <strong style='color: red'>La masse ne peut pas être négative ou égale à 0.</strong>";
+					return 0;
+				}
+				else if (isNaN(masse)) {
+					document.getElementById("probMasse").innerHTML="<i style='color: red' class='far fa-times-circle'></i> <strong style='color: red'>La masse saisie doit être un chiffre.</strong>";
+					return 0;
+				}
+				document.getElementById("probMasse").innerHTML="<i style='color: green' class='far fa-check-circle'></i>";
+				return 1;
+			}
+
+			function imcFemme(result){
+				if (result!=null) {
+					if (result<=19.1) {
+						document.getElementById("comm").innerHTML="<strong>Information : </strong>maigre";
+					}
+					else if(result>19.1 && result<25.8){
+						document.getElementById("comm").innerHTML="<strong>Information : </strong>normal chez un adulte";
+					}
+					else if(result>25.8 && result<27.3){
+						document.getElementById("comm").innerHTML="<strong>Information : </strong>surpoids (surcharge pondérale)";
+					}
+					else if(result>27.3 && result<32.3){
+						document.getElementById("comm").innerHTML="<strong>Information : </strong>obésité";
+					}
+					else if(result>35.3){
+						document.getElementById("comm").innerHTML="<strong>Information : </strong>obésité sévère";
+					}
+				}
+			}
+
+			function imcHomme(result){
+				if (result!=null) {
+					if (result<=20.7) {
+						document.getElementById("comm").innerHTML="<strong>Information : </strong>maigre";
+					}
+					else if(result>20.7 && result<26.4){
+						document.getElementById("comm").innerHTML="<strong>Information : </strong>normal chez un adulte";
+					}
+					else if(result>26.4 && result<27.8){
+						document.getElementById("comm").innerHTML="<strong>Information : </strong>surpoids (surcharge pondérale)";
+					}
+					else if(result>27.8 && result<31.1){
+						document.getElementById("comm").innerHTML="<strong>Information : </strong>obésité";
+					}
+					else if(result>31.1){
+						document.getElementById("comm").innerHTML="<strong>Information : </strong>obésité sévère";
+					}
+				}
+			}
+			function verifSexe(){
+				var radios = document.getElementsByName("sexe");
+				for(var i = 0; i < radios.length; i++) {
+				   if(radios[i].checked){
+				       if(radios[i].value=='femme'){
+				       		document.getElementById("probSexe").innerHTML="<i style='color: green' class='far fa-check-circle'></i>";
+				       		return 2;
+				       }
+				       if(radios[i].value=='homme'){
+				   			document.getElementById("probSexe").innerHTML="<i style='color: green' class='far fa-check-circle'></i>";
+				       		return 1;
+				       }
+				 	}
+				}
+				document.getElementById("probSexe").innerHTML="<i style='color: red' class='far fa-times-circle'></i> <strong style='color: red'>Veuillez sélectionner un sexe.</strong>";
+				return 0;
+			}
+			function imc(){
+				var masse=document.getElementById("m").value;
+				var taille=document.getElementById("t").value;
+
+				var vT=verifTaille();
+				var vM=verifMasse();
+				var vS=verifSexe();
+				if (vT==1 && vM==1 && vS!=0) {
+					var result=(masse/Math.pow(taille,2));
+				}
+				if (!isNaN(result)) {
+					if (vS==1) imcHomme(result);
+				    if (vS==2) imcFemme(result);
+					document.getElementById("result").innerHTML="<strong>IMC : </strong>"+result;
+				}
+			}	
+		</script>
+		  <script type="text/javascript">
+		var isCtrl = false;
+		document.onkeyup=function(e){ if(e.which == 17) isCtrl=false; }
+		document.onkeydown=function(e){
+			if(e.which == 17) isCtrl=true;
+			if(e.which == 67 && isCtrl == true) {
+				imc();
+			}
+		}
+	</script>
+</body>
+</html>

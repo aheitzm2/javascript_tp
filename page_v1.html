@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+	<title>Exercice 1</title>
+	<script type="text/javascript">
+		var isCtrl = false;
+		document.onkeyup=function(e){ if(e.which == 17) isCtrl=false; }
+		document.onkeydown=function(e){
+			if(e.which == 17) isCtrl=true;
+			if(e.which == 67 && isCtrl == true) {
+				imc();
+			}
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<label>Taille (mètre)</label> 
+		<input type="text" name="taille" id="t"><br><br>
+
+		<label>Masse (en kg)</label> 
+		<input type="text" name="masse" id="m"><br>
+		<input type="button" name="bouton" value="Calculer" id="submit"><input type="button" name="boutonEfface" value="Effacer" id="effacer"><span id="msg"></span>
+		<div id="result"></div>
+		<div id="comm"></div>
+	</form>
+	<script type="text/javascript">
+		document.getElementById("submit").addEventListener("click",imc);
+		document.getElementById("effacer").addEventListener("click",clear);
+		document.getElementById("submit").addEventListener("mouseover",msg);
+		document.getElementById("submit").addEventListener("mouseout",out);
+
+		function clear(){
+			document.getElementById("comm").innerHTML="";
+			document.getElementById("result").innerHTML="";
+			document.getElementById("m").value="";
+			document.getElementById("t").value="";
+		}
+
+		function msg(){
+			document.getElementById("msg").innerHTML=" Appuyer sur le bouton pour calculer l'IMC";
+		}
+		function out(){
+			document.getElementById("msg").innerHTML="";
+		}
+
+		function imc(){
+			var taille=document.getElementById("t").value;
+			var masse=document.getElementById("m").value;
+
+			if (taille<=0) {
+				alert("La taille ne peut pas être négative ou égale à 0.");
+				clear();
+			}
+			if (masse<=0) {
+				alert("La masse ne peut pas être négative ou égale à 0.");
+				clear();
+			}
+			if (isNaN(taille)) {
+				alert("La taille saisie doit être un chiffre.");
+				clear();
+			}
+			if (isNaN(masse)) {
+				alert("La masse saisie doit être un chiffre.");
+				clear();
+			}
+
+			var result=(masse/Math.pow(taille,2));
+			if (!isNaN(result)) {
+				document.getElementById("result").innerHTML=result;
+			}
+			
+			if (result!=null) {
+				if (result<=18.5) {
+					document.getElementById("comm").innerHTML="maigre";
+				}
+				else if(result>18.5 && result<25){
+					document.getElementById("comm").innerHTML="normal chez un adulte";
+				}
+				else if(result>25 && result<30){
+					document.getElementById("comm").innerHTML="surpoids (surcharge pondérale)";
+				}
+				else if(result>30 && result<35){
+					document.getElementById("comm").innerHTML="obésité";
+				}
+				else if(result>35 && result<40){
+					document.getElementById("comm").innerHTML="obésité sévère";
+				}
+			}	
+		}	
+	</script>
+</body>
+</html>
